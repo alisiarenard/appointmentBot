@@ -13,10 +13,11 @@ export default async function startAction(ctx: TelegrafContext) {
 export function getAppointmentAction(ctx: TelegrafContext) {
     return ctx.replyWithMarkdown(
         'Для выбора даты и времени встречи нажми кнопку Записаться',
-        Markup.inlineKeyboard(
+        Markup.inlineKeyboard([
             [
                 Markup.button.callback(ctx.i18n.t('wizardGetAppointment.menu.getAppointment'), GLOBAL_ACTIONS.getAppointment)
-            ]
-        )
+            ],
+            [Markup.button.callback(ctx.i18n.t('wizardGetAppointment.menu.rescheduleAppointment'), GLOBAL_ACTIONS.rescheduleAppointment)]
+        ])
     );
 }

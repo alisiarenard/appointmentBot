@@ -24,4 +24,5 @@ export interface TelegrafContext extends Context {
 
 export enum GLOBAL_ACTIONS {
     getAppointment = 'getAppointment',
+    rescheduleAppointment = 'rescheduleAppointment'
 }

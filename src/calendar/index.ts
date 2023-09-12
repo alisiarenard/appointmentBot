@@ -2,8 +2,8 @@ import path from "path";
 import process from "process";
 import {google} from "googleapis";
 import {authenticate} from "@google-cloud/local-auth";
-import {getListEvents} from "./getFreeSlots";
-import {createNewEvent} from "./createEvent";
+import {getEvents, getListEvents} from "./getFreeSlots";
+import {createNewEvent, updateEvent} from "./createEvent";
 
 const fs = require('fs').promises;
 
@@ -16,17 +16,35 @@ export async function getFreeSlots() {
     const scopes = ['https://www.googleapis.com/auth/calendar'];
     const auth = await authorize(scopes);
     const eventList = await getListEvents(auth);
+
     return eventList;
 }
 
-export async function createEvent(date: any, name: string) {
+export async function createEvent(date: any, name: string, id: string) {
     const scopes = [
         'https://www.googleapis.com/auth/calendar',
         'https://www.googleapis.com/auth/calendar.events',
     ]
     const auth = await authorize(scopes);
-    const creationResponse = await createNewEvent(auth, date.data, name);
+    const creationResponse = await createNewEvent(auth, date.data, name, id);
     return creationResponse;
+}
+
+export async function rescheduleEvent(date: any, name: string, id: string) {
+    const scopes = [
+        'https://www.googleapis.com/auth/calendar',
+        'https://www.googleapis.com/auth/calendar.events',
+    ]
+    const auth = await authorize(scopes);
+    const creationResponse = await updateEvent(auth, date.data, id, name);
+    return creationResponse;
+}
+
+export async function getAllEventsByUser(id?: string) {
+    const scopes = ['https://www.googleapis.com/auth/calendar'];
+    const auth = await authorize(scopes);
+    const eventList = await getEvents(auth, id);
+    return eventList;
 }
 
 async function authorize(scopes: string[]) {

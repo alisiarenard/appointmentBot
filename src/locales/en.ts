@@ -2,6 +2,15 @@
 export default {
     greeting: `*Привет, \${name}*`,
 
+    wizardRescheduleAppointment: {
+        actions: {
+            date: 'Выбери запись которую хочешь изменить',
+            done: `✅ Время встречи изменено на *\${date} в \${time}(МСК)*. `,
+            noEvents: 'У тебя нет записей',
+            noTime: 'Нет времени для записи'
+        }
+    },
+
     wizardGetAppointment: {
         intro: `Для записи нажми кнопку Записаться`,
         actions: {
@@ -14,6 +23,7 @@ export default {
         },
         menu: {
             getAppointment: 'Записаться',
+            rescheduleAppointment: 'Изменить запись'
         },
     }
 };

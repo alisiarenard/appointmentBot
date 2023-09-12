@@ -36,8 +36,9 @@ export default new Scenes.WizardScene<TelegrafContext>(
     async (ctx) => {
         await ctx.deleteMessage();
         const name = `${ctx.from?.first_name} ${ctx.from?.last_name}`;
+        const id = ctx.from?.id.toString() ?? '';
         if (ctx.callbackQuery && 'data' in ctx.callbackQuery) {
-        const result = await createEvent(ctx.callbackQuery, name);
+        const result = await createEvent(ctx.callbackQuery, name, id);
 
             result === 200 && await ctx.replyWithMarkdown(
                 ctx.i18n.t('wizardGetAppointment.actions.done', {
