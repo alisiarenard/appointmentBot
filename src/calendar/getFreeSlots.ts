@@ -49,11 +49,11 @@ export async function getFree(e?: any[]) {
     }
 
     allDays.forEach(date => {
-            new Array(12).fill('')
+            new Array(11).fill('')
                 .forEach((i, index) => {
                     console.log(i);
-                    allDates.push(moment(date).set({hour: index + 9}).format());
-                    allDates.push(moment(date).set({hour: index + 9, minute: 30}).format());
+                    allDates.push(moment(date).set({hour: index + 11}).format());
+                    allDates.push(moment(date).set({hour: index + 11, minute: 30}).format());
                 });
 
         });
