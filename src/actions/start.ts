@@ -17,7 +17,8 @@ export function getAppointmentAction(ctx: TelegrafContext) {
             [
                 Markup.button.callback(ctx.i18n.t('wizardGetAppointment.menu.getAppointment'), GLOBAL_ACTIONS.getAppointment)
             ],
-            [Markup.button.callback(ctx.i18n.t('wizardGetAppointment.menu.rescheduleAppointment'), GLOBAL_ACTIONS.rescheduleAppointment)]
+            [Markup.button.callback(ctx.i18n.t('wizardGetAppointment.menu.rescheduleAppointment'), GLOBAL_ACTIONS.rescheduleAppointment)],
+            [Markup.button.callback(ctx.i18n.t('wizardGetAppointment.menu.paymentInfo'), GLOBAL_ACTIONS.paymentInfo)]
         ])
     );
 }
