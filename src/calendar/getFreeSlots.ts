@@ -37,9 +37,21 @@ export async function getFree(e?: any[]) {
 
     // @ts-ignore
     startTimeEvents
-        .forEach((date) => date.duration === 60 && busyDates
-            .push(date.date, moment(date.date).add(30, 'minutes')
-                .format()));
+        .forEach((date) => {
+            if (date.duration === 60) {
+                busyDates
+                    .push(date.date, moment(date.date).add(30, 'minutes')
+                        .format());
+            };
+            if (date.duration === 90) {
+                busyDates
+                    .push(
+                        date.date,
+                        moment(date.date).add(30, 'minutes').format(),
+                        moment(date.date).add(60, 'minutes').format()
+                    );
+            }
+        });
 
     const date = moment().add(-moment().utcOffset(), 'minutes').toDate();
 
@@ -49,11 +61,11 @@ export async function getFree(e?: any[]) {
     }
 
     allDays.forEach(date => {
-            new Array(11).fill('')
+            new Array(10).fill('')
                 .forEach((i, index) => {
                     console.log(i);
-                    allDates.push(moment(date).set({hour: index + 11}).format());
-                    allDates.push(moment(date).set({hour: index + 11, minute: 30}).format());
+                    allDates.push(moment(date).set({hour: index + 10}).format());
+                    allDates.push(moment(date).set({hour: index + 10, minute: 30}).format());
                 });
 
         });

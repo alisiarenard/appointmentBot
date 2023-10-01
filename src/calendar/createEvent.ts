@@ -11,7 +11,7 @@ export async function createNewEvent(auth: any, date: string, name: string, id: 
         'timeZone': 'Europe/Moscow'
     },
     'end': {
-        'dateTime': moment(date).add(1, 'hour').format(),
+        'dateTime': moment(date).add(90, 'minutes').format(),
         'timeZone': 'Europe/Moscow'
     }
 }
